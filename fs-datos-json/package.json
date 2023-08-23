@@ -1,0 +1,12 @@
+{
+/t"name": "fs-datos-json",
+/t"version": "1.0.0",
+/t"description": "",
+/t"main": "index.js",
+/t"scripts": {
+/t/t"test": "echo \"Error: no test specified\" && exit 1"
+/t},
+/t"keywords": [],
+/t"author": "Pepito",
+/t"license": "ISC"
+}

@@ -1,32 +1,50 @@
 class ProductManager {
   constructor() {
+    // Array vacio para almacenar los productos
     this.products = [];
+    // contador para generar id en cada producto
+    this.productIdCount = 1; 
   }
 
-  addPtoducts(title, description) {
-    if (!title || !description) {
-      return console.log("todos los campos son obligatorios");
+  addPtoducts(title, description,price,thumbnail,stock) {
+    if (!title || !description || !price || !thumbnail || !stock) {
+      return console.error("todos los campos son obligatorios");
     }
-    if (codeExist) {
-      return console.log("El producto ya existe");
-    }
+  }
+    checkDuplicateProduct(id){
+      //
+      const existingProduct = this.products.find(product => product.id === id);
+      if (existingProduct) {
+        console.error("El producto ya existe");
+        
+      }
+    
+
     // creamos los productos una vez verificado los campos
-    const newProduct = {
-      title,
-      description,
-    };
+
+   const newProduct = {
+    id: this.productIdCount++,
+    title,
+    description,
+    price,
+    thumbnail,
+    stock,
+  };
+
+ 
     // agregamos los campos a products
     this.products.push(newProduct);
-    console.log(newProduct);
-  }
+    console.log("Producto agregado:",newProduct);
+
+}
 }
 
 //creamos instancia
 const manager = new ProductManager();
 console.log(manager);
 
-manager.addPtoducts(undefined, "juguetes de perros");
+// manager.addPtoducts(undefined, "juguetes de perros");
 
-manager.addPtoducts("comida", undefined);
+// manager.addPtoducts("comida", undefined);
 
-manager.addPtoducts("peliculas", "harry potter");
+manager.addPtoducts("peliculas", "harry potter",20,"gdfg",2);
