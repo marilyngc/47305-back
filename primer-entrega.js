@@ -3,26 +3,26 @@ class ProductManager {
     // Array vacio para almacenar los productos
     this.products = [];
     // contador para generar id en cada producto
-    this.productIdCount = 1; 
+    this.productIdCount = 1;
   }
 
-  addPtoducts(title, description,price,thumbnail,stock) {
-    if (!title || !description || !price || !thumbnail || !stock) {
+  addProducts(title, description, price, thumbnail, stock) {
+    if (!title || !description || !price || !thumbnail || !stock ) {
       return console.error("todos los campos son obligatorios");
-    }
-  }
-    checkDuplicateProduct(id){
-      //
-      const existingProduct = this.products.find(product => product.id === id);
-      if (existingProduct) {
-        console.error("El producto ya existe");
-        
-      }
-    
+    } 
+  
 
-    // creamos los productos una vez verificado los campos
+    // Verificamos si ya existe un producto con el mismo título
+    const existingProduct = this.products.find(
+      (product) => product.title === title
+    );
+    if (existingProduct) {
+      return console.error("El producto ya existe");
+    };
 
-   const newProduct = {
+
+      // creamos los productos una vez verificado los campos
+  const newProduct = {
     id: this.productIdCount++,
     title,
     description,
@@ -31,20 +31,48 @@ class ProductManager {
     stock,
   };
 
- 
-    // agregamos los campos a products
-    this.products.push(newProduct);
-    console.log("Producto agregado:",newProduct);
+   // Agregamos el nuevo producto al array de productos
+  this.products.push(newProduct);
+  console.log("Producto agregado:", newProduct);
+
+
+  // mostramos todos los productos
+    const getProducts = this.products;
+    console.log("todos los productos:",getProducts);
+}
+
+
+  // función para determinar si existe o no un producto dentro del array 
+  getProductsById(id){
+    const productId = this.products.find(product => product.id === id );
+    if (productId) {
+       console.log("Existe un producto con el mismo ID");
+      
+    }else{
+      console.error("Not found")
+    }
+  }
+
 
 }
-}
+
+
 
 //creamos instancia
 const manager = new ProductManager();
-console.log(manager);
 
-// manager.addPtoducts(undefined, "juguetes de perros");
 
-// manager.addPtoducts("comida", undefined);
 
-manager.addPtoducts("peliculas", "harry potter",20,"gdfg",2);
+manager.addProducts("comida", undefined);
+
+manager.addProducts("peliculas", "harry potter", 20, "gdfg", 2);
+manager.addProducts("peliculas", "harry potter", 20, "gdfg", 2);
+manager.addProducts("Libros", "el principito", 2000, "gdfg", 1);
+
+
+console.log("manager:", manager);
+
+
+// Hardcodeamos el id para ver si existe
+manager.getProductsById(3)
+
