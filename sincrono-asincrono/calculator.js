@@ -8,7 +8,11 @@ function sum (num1,num2){
         } if(result < 0 ){
             return reject("La calculadora solo debe devolver valores positivos");
         }
-        resolve(result);
+
+        setTimeout(() => {
+            resolve(result);
+        },2000)
+      
     });
 
 };
@@ -26,7 +30,9 @@ function subtraction (num1,num2) {
             return reject("La calculadora solo debe devolver valores positivos");
         }
 
-         resolve(result);
+        setTimeout(() => {
+            resolve(result);
+        },2000)
 
        
 
@@ -45,7 +51,9 @@ function multiplication(num1,num2){
         }if(result < 0){
             reject("La calculadora solo devuelve valores positivos");
         }
-        resolve(result);
+        setTimeout(() => {
+            resolve(result);
+        },2000)
     })
 };
 
