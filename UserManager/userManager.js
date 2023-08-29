@@ -14,7 +14,7 @@ class UsersManager {
       if (this.fileExist()) {
 
         // Leer archivo una vez encontrado 
-        const content = await fs.promises.readFile(this.fileExist,"utf-8");
+        const content = await fs.promises.readFile(this.filePath,"utf-8");
 
         
         // transformar string a json => JSON.parse(objetoJson)
@@ -35,12 +35,14 @@ class UsersManager {
   }
 
   
+
+  
   async createUser(userInfo) {
     try {
       if (this.fileExist()) {
 
         // Leer archivo una vez encontrado 
-        const content = await fs.promises.readFile(this.fileExist,"utf-8");
+        const content = await fs.promises.readFile(this.filePath,"utf-8");
 
         
         // transformar string a json => JSON.parse(objetoJson)
