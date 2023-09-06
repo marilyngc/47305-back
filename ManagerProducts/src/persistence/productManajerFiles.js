@@ -1,7 +1,7 @@
-const { log } = require("console");
-const fs = require("fs");
 
-class ProductManager {
+import fs from "fs";
+
+export default class ProductManagerFiles {
   constructor(path) {
     // espacio para añadir el archivo
     this.path = path;
@@ -32,7 +32,7 @@ this.initializeProductIdCount(); // Método para inicializar el contador desde e
   async getProduct(ProductInfo) {
     try {
       if (this.fileExist()) {
-        // Leer archivo una vez encontrado
+        // Leer archivo una vez encontrado en string
         const content = await fs.promises.readFile(this.path, "utf-8");
 
         // transformar string a json => JSON.parse(objetoJson)
@@ -40,11 +40,11 @@ this.initializeProductIdCount(); // Método para inicializar el contador desde e
 
         return contentJson;
       } else {
-        throw new Error("No es posible guardar el usuario");
+        console.log("No es posible guardar el usuario");
       }
     } catch (error) {
       console.log(error.message);
-      throw new error();
+      throw error;
     }
   }
 
@@ -110,9 +110,9 @@ this.initializeProductIdCount(); // Método para inicializar el contador desde e
       const productId = contentJson.find((product) => product.id === id);
       // Lo mostramos en formato objeto
       if (productId) {
-        return console.log("El producto ya existe", productId);
+        return productId;
       } else {
-        console.error("Not found");
+        throw new Error("Not found");
       }
     } catch (error) {
       throw error;
@@ -139,9 +139,9 @@ this.initializeProductIdCount(); // Método para inicializar el contador desde e
 
 //creamos instancia
 
-const operations = async () => {
+/* const operations = async () => {
   try {
-    const manager = new ProductManager("products.json");
+    const manager = new ProductManagerFiles("/products.json");
     const products = await manager.getProduct();
     console.log(products); 
 
@@ -160,7 +160,8 @@ const operations = async () => {
     manager.getProductsById(3);
   } catch (error) {
     throw error;
-  }
-};
+  } */
+//};
 
-operations();
+//operations();
+
