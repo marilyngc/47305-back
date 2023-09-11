@@ -1,0 +1,19 @@
+// RCP  => es una arquitectura que lo que haces es definir 
+nuestros Endpoints  como funciones
+// getProduct => obtener un producto
+//deleteUsers => eliminar usuario
+
+// REST
+// Metodos: GET, POST, PUT, DELETE 
+
+ENDPOINTS:
+/users => realizar alguna operacion con usuarios
+/courses  => endpoint para gestionar cursos
+/stuedents => endpoint para gestionar 
+
+POST /users => Crear usuarios
+DELETE /courses => eliminar un cursos
+GET /students => obtener el listado de estudiantes
+PUT /students => actualizar la informacion del estudiante 
+
+MAL: POST /addCourses => 
