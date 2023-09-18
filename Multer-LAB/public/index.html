@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+ <h1>Formulario para agregar mascotas</h1>
+ <!-- es un tipo de archivo para recibir las peticiones => enctype="multipart/form-data" -->
+ <form method="post" action="/api/pets" enctype="multipart/form-data"> 
+<input type="text" placeholder="Nombre de la mascota" name="name">
+<br>
+<br>
+<input type="number" placeholder="edad de la mascota" name="age">
+<br>
+<input type="file"  name="file">
+<br>
+<button> Crear mascota</button>
+ </form>
+    </div>
+</body>
+</html>
