@@ -33,13 +33,13 @@ const role = "user";
 
 
 router.get("/",(req,res)=>{
-    res.render("home",{style:"home.css"});
+    res.render("home",{style:"home.css"});// nombre del archivo que  contiene la vista
 });
 
 
 // http://localhost:8080/contact
 router.get("/contact",(req,res)=>{
-    res.render("contact");
+    res.render("contact");// nombre del archivo que  contiene la vista
 });
 
 router.get("/profile",(req,res)=>{

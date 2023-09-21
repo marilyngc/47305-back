@@ -15,7 +15,7 @@ const httpServer =app.listen(port,()=> console.log("server working"));
 const socketServer = new Server(httpServer);
 
 // middlewares
-app.use(express.static(path.join(__dirname,"public")))
+app.use(express.static(path.join(__dirname,"public")));
 
 // confuguracion de motor de plantillas
 app.engine('.hbs', engine({extname: '.hbs'}));
