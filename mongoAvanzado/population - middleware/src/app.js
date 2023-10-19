@@ -98,3 +98,12 @@ app.get("/course-populate/:courseId", async (req,res) => {
           res.json({status:"error", message:error.message});
       }
 });
+app.get("/course-populate-middleware/:courseId", async (req,res) => {
+    try {
+       const courseId = req.params.courseId;
+       const result = await coursesModel.findOne({_id:courseId});
+      res.json({status:"succes", data:result});
+      } catch (error) {
+          res.json({status:"error", message:error.message});
+      }
+});
