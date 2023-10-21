@@ -1,0 +1,9 @@
+import mongoose from "mongoose";
+
+export const connectDB = async () => {
+    try {
+       await mongoose.connect("mongodb+srv://Marilyn:bKFBJlXjAWVtcyb7@maricluster.3nfwgsn.mongodb.net/universityDB?retryWrites=true&w=majority") 
+    } catch (error) {
+        console.log(`hubo un error al conectar la base de datos ${error.message}`)
+    }
+};
