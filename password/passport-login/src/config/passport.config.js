@@ -41,4 +41,45 @@ export const initializePassport = () => {
             }
         }
     ));
+    // estrategia para loguearse a los usuarios
+    passport.use("loginLocalStrategy",new localStrategy(
+        //recibe dos parametros
+        {
+           
+            userNameField:"email" // ahora el campo userName es igual al campo email
+        },
+        async(userName,password,done) => {
+            // done: sirve para indicarle a mi servidor si el proceso de autenticacion finzalizó de forma correcta o si tiene un error
+            
+            try {
+                const user = await usersModel.findOne({email:userName});
+                if (!user) {
+                    // el usuario no está
+                    // null: no hubo error
+                    // false: recibe el usuario que se va identificar(en este caso no se registró)
+                    return done(null,false);
+                }
+                if (!inValidPassword(password,user)) {
+                    return done(null,false);
+
+                }
+
+                // validamos que el usuario esta registrado y que la contraseña es correcta
+                return done(null,user);
+            } catch (error) {
+               return done(error);
+            }
+        }
+    ));
+
+    passport.serializeUser((user,done) => {
+done(null,user._id);
+
+    });
+
+    passport.deserializeUser( async(id,done) => {
+        // preguntamos en la DB si el usuario existe
+        const user = await usersModel.findById(id);
+        done(null,user); // queda guardado en req.user = información traida de la DB
+    })
 };
