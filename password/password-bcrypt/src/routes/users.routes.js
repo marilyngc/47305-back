@@ -16,7 +16,7 @@ router.post("/login", (req,res) => {
     
    res.send("peticion login")
 
-   // verificar contraseña
+   // verificar contraseña 
    if (inValidPassword(loginForm.password,user)) {
     return req.render({error:"credenciales invalidas"});
    }
