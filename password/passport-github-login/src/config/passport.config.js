@@ -85,7 +85,23 @@ export const initializePassport = () => {
         // son token que se generan una vez iniciado sesión (nos lo ofrece facebook,instagram etc...)
         async (accessToken,refreshToken,profile,done) => {
             try {
-                console.log("profile",profile)
+                //console.log("profile",profile);
+                const user = await usersModel.findOne({email:profile.userName});
+                if (user) {
+                    // el usuario ya está registrado
+                    // null: no hubo error
+                    // false: recibe el usuario que se va identificar(en este caso no se registró)
+                    return done(null,user);
+                }
+                // el usuario no está registrado
+                const newUser = {
+                    first_name:profile_json.name,
+                    email:profile.userName,
+                    passport: createHash(profile.id)
+                };
+                console.log(newUser);
+                const userCreate= await usersModel.create(newUser);
+                return done(null,userCreate);
             } catch (error) {
                 return done(error)
             }

@@ -32,7 +32,8 @@ app.set('views', path.join(__dirname,"/views"));
 app.use(session({
     store: MongoStore.create({
         ttl:3000,
-        mongoUrl:config.mongo.url
+        mongoUrl:config.mongo.url,
+     
     }),
     secret:config.server.secretSession,
     resave:true,
@@ -41,7 +42,7 @@ app.use(session({
 
 //configurar passport
 initializePassport();
-app.use(passport.initialize); // inicializamos passpot en nuestro servidor
+app.use(passport.initialize()); // inicializamos passpot en nuestro servidor
 app.use(passport.session()); // vinculamos passport con session
 
 //routes
